@@ -21,7 +21,7 @@ dependencies {
     api project(':opentelemetry-api')
 
     implementation project(':opentelemetry-sdk'),
-        project(':opentelemetry-exporters-jaeger'), 
+        project(':opentelemetry-exporters-jaeger'),
         libraries.grpc_protobuf,
         libraries.protobuf,
         libraries.protobuf_util,
@@ -39,4 +39,3 @@ dependencies {
         systemProperty 'archive.name', fatJar.outputs.files[0].path
     }
 }
-

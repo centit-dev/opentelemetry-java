@@ -17,10 +17,6 @@
 package io.opentelemetry.sdk.extensions.otproto;
 
 import com.google.protobuf.ByteString;
-import io.opentelemetry.proto.trace.v1.ConstantSampler;
-import io.opentelemetry.sdk.trace.Sampler;
-import io.opentelemetry.sdk.trace.Samplers;
-import io.opentelemetry.sdk.trace.config.TraceConfig;
 import io.opentelemetry.trace.SpanId;
 import io.opentelemetry.trace.TraceId;
 
@@ -52,48 +48,4 @@ public final class TraceProtoUtils {
     return ByteString.copyFrom(traceIdBytes);
   }
 
-  /**
-   * Returns a {@code TraceConfig} from the given proto.
-   *
-   * @param traceConfigProto proto format {@code TraceConfig}.
-   * @return a {@code TraceConfig}.
-   */
-  public static TraceConfig traceConfigFromProto(
-      io.opentelemetry.proto.trace.v1.TraceConfig traceConfigProto) {
-    return TraceConfig.getDefault()
-        .toBuilder()
-        .setSampler(fromProtoSampler(traceConfigProto))
-        .setMaxNumberOfAttributes((int) traceConfigProto.getMaxNumberOfAttributes())
-        .setMaxNumberOfEvents((int) traceConfigProto.getMaxNumberOfTimedEvents())
-        .setMaxNumberOfLinks((int) traceConfigProto.getMaxNumberOfLinks())
-        .setMaxNumberOfAttributesPerEvent(
-            (int) traceConfigProto.getMaxNumberOfAttributesPerTimedEvent())
-        .setMaxNumberOfAttributesPerLink((int) traceConfigProto.getMaxNumberOfAttributesPerLink())
-        .build();
-  }
-
-  private static Sampler fromProtoSampler(
-      io.opentelemetry.proto.trace.v1.TraceConfig traceConfigProto) {
-    if (traceConfigProto.hasConstantSampler()) {
-      ConstantSampler constantSampler = traceConfigProto.getConstantSampler();
-      switch (constantSampler.getDecision()) {
-        case ALWAYS_ON:
-          return Samplers.alwaysOn();
-        case ALWAYS_OFF:
-          return Samplers.alwaysOff();
-        case ALWAYS_PARENT:
-          // TODO: add support.
-        case UNRECOGNIZED:
-          throw new IllegalArgumentException("unrecognized constant sampling samplingResult");
-      }
-    }
-    if (traceConfigProto.hasProbabilitySampler()) {
-      return Samplers.probability(
-          traceConfigProto.getProbabilitySampler().getSamplingProbability());
-    }
-    if (traceConfigProto.hasRateLimitingSampler()) {
-      // TODO: add support for RateLimiting Sampler
-    }
-    throw new IllegalArgumentException("unknown sampler in the trace config proto");
-  }
 }
