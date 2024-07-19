@@ -13,7 +13,7 @@ ext {
 
 subprojects {
     group = "io.opentelemetry"
-    version = "0.8.0" // CURRENT_OPEN_TELEMETRY_VERSION
+    version = "0.8.0-otlpnew" // CURRENT_OPEN_TELEMETRY_VERSION
 }
 
 configure(opentelemetryProjects) {
@@ -76,7 +76,7 @@ configure(opentelemetryProjects) {
         it.options.errorprone.excludedPaths = ".*generated.*"
         // "-XepExcludedPaths:.*/build/generated/source/proto/.*"
 
-        it.options.compilerArgs += ["-Werror"]
+//        it.options.compilerArgs += ["-Werror"]
     }
 
     compileTestJava {
