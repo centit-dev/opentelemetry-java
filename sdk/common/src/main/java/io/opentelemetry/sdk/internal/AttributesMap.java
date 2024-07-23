@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.opentelemetry.sdk.trace;
+package io.opentelemetry.sdk.internal;
 
 import io.opentelemetry.common.AttributeValue;
 import io.opentelemetry.common.ReadableAttributes;
@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * <p>Some APIs may have slightly different behaviors, like `put` which returns null if out of
  * capacity.
  */
-final class AttributesMap extends HashMap<String, AttributeValue> implements ReadableAttributes {
+public final class AttributesMap extends HashMap<String, AttributeValue>
+    implements ReadableAttributes {
 
   private final long capacity;
   private int totalAddedValues = 0;
@@ -36,7 +37,7 @@ final class AttributesMap extends HashMap<String, AttributeValue> implements Rea
   // has no definition of serialVersionUID. This class shouldn't be serialized.
   private static final long serialVersionUID = 42L;
 
-  AttributesMap(long capacity) {
+  public AttributesMap(long capacity) {
     this.capacity = capacity;
   }
 
@@ -81,7 +82,7 @@ final class AttributesMap extends HashMap<String, AttributeValue> implements Rea
     throw new UnsupportedOperationException("Do not call methods on the map");
   }
 
-  int getTotalAddedValues() {
+  public int getTotalAddedValues() {
     return totalAddedValues;
   }
 

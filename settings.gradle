@@ -2,7 +2,7 @@ pluginManagement {
     plugins {
         id "com.github.ben-manes.versions" version "0.20.0"
         id "com.github.kt3k.coveralls" version "2.0.1"
-        id 'com.github.sherter.google-java-format' version "0.8"
+//        id 'com.github.sherter.google-java-format' version "0.8"
         id "com.google.protobuf" version "0.8.8"
         id "com.jfrog.artifactory" version "4.13.0"
         id "io.morethan.jmhreport" version "0.9.0"
@@ -32,12 +32,12 @@ include ":opentelemetry-all",
         ":opentelemetry-extension-trace-propagators",
         ":opentelemetry-extension-trace-utils",
 //        ":opentelemetry-exporters-inmemory",
-//        ":opentelemetry-exporters-jaeger",
-//        ":opentelemetry-exporters-logging",
+        ":opentelemetry-exporters-jaeger",
+        ":opentelemetry-exporters-logging",
 //        ":opentelemetry-exporters-otlp",
         ":opentelemetry-exporters-otlpnew",
 //        ":opentelemetry-exporters-prometheus",
-//        ":opentelemetry-exporters-zipkin",
+        ":opentelemetry-exporters-zipkin",
 //        ":opentelemetry-integration-tests",
 //        ":opentelemetry-opentracing-shim",
         ":opentelemetry-proto",
@@ -45,6 +45,7 @@ include ":opentelemetry-all",
         ":opentelemetry-sdk-correlation-context",
         ":opentelemetry-sdk-metrics",
         ":opentelemetry-sdk-tracing",
+        ":opentelemetry-sdk-logs",
         ":opentelemetry-sdk",
         ":opentelemetry-sdk-extension-async-processor",
         ":opentelemetry-sdk-extension-auto-config",

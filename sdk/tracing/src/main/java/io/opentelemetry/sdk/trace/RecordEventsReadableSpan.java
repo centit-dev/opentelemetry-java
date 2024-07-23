@@ -24,6 +24,7 @@ import io.opentelemetry.common.ReadableKeyValuePairs.KeyValueConsumer;
 import io.opentelemetry.internal.StringUtils;
 import io.opentelemetry.sdk.common.Clock;
 import io.opentelemetry.sdk.common.InstrumentationLibraryInfo;
+import io.opentelemetry.sdk.internal.AttributesMap;
 import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.TimedEvent.RawTimedEventWithEvent;
 import io.opentelemetry.sdk.trace.config.TraceConfig;

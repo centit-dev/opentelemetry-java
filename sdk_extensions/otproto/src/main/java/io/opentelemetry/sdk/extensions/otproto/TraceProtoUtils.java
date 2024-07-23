@@ -47,5 +47,4 @@ public final class TraceProtoUtils {
     traceId.copyBytesTo(traceIdBytes, 0);
     return ByteString.copyFrom(traceIdBytes);
   }
-
 }

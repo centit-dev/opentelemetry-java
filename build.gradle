@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.sherter.google-java-format" apply false
+//    id "com.github.sherter.google-java-format" apply false
     id "com.jfrog.artifactory" apply false
     id "com.jfrog.bintray" version "1.8.4" apply false // Need *specific* version.
     id "net.ltgt.errorprone" apply false
@@ -25,7 +25,7 @@ configure(opentelemetryProjects) {
     apply plugin: 'signing'
     apply plugin: 'jacoco'
 
-    apply plugin: 'com.github.sherter.google-java-format'
+//    apply plugin: 'com.github.sherter.google-java-format'
     apply plugin: 'net.ltgt.errorprone'
 
     repositories {
@@ -181,9 +181,9 @@ configure(opentelemetryProjects) {
 
     jacoco { toolVersion = "0.8.5" }
 
-    googleJavaFormat {
-        toolVersion = '1.7'
-    }
+//    googleJavaFormat {
+//        toolVersion = '1.7'
+//    }
 
     configurations {
         compile {
@@ -245,15 +245,15 @@ configure(opentelemetryProjects) {
     }
 
     afterEvaluate {  // Allow subproject to add more source sets.
-        tasks.googleJavaFormat {
-            source = sourceSets*.allJava
-            include '**/*.java'
-        }
+//        tasks.googleJavaFormat {
+//            source = sourceSets*.allJava
+//            include '**/*.java'
+//        }
 
-        tasks.verifyGoogleJavaFormat {
-            source = sourceSets*.allJava
-            include '**/*.java'
-        }
+//        tasks.verifyGoogleJavaFormat {
+//            source = sourceSets*.allJava
+//            include '**/*.java'
+//        }
 
         jar {
             inputs.property("moduleName", moduleName)
