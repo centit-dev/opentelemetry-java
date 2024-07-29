@@ -43,5 +43,4 @@ class TraceProtoUtilsTest {
     ByteString expected = ByteString.copyFrom(SPAN_ID_BYTES);
     assertThat(TraceProtoUtils.toProtoSpanId(SPAN_ID)).isEqualTo(expected);
   }
-
 }

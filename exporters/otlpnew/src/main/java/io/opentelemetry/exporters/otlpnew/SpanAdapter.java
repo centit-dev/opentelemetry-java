@@ -175,8 +175,11 @@ final class SpanAdapter {
   }
 
   static Status toStatusProto(io.opentelemetry.trace.Status status) {
-    Status.Builder builder =
-        Status.newBuilder().setCode(Status.StatusCode.forNumber(status.getCanonicalCode().value()));
+    Status.Builder builder = Status.newBuilder();
+    Status.StatusCode statusCode = Status.StatusCode.forNumber(status.getCanonicalCode().value());
+    if (statusCode != null) {
+      builder.setCode(statusCode);
+    }
     if (status.getDescription() != null) {
       builder.setMessage(status.getDescription());
     }

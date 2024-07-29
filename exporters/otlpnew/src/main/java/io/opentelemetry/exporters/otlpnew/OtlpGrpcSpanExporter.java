@@ -28,6 +28,7 @@ import io.grpc.Metadata;
 import io.grpc.stub.MetadataUtils;
 import io.opentelemetry.proto.collector.trace.v1.ExportTraceServiceRequest;
 import io.opentelemetry.proto.collector.trace.v1.ExportTraceServiceResponse;
+import io.opentelemetry.proto.collector.trace.v1.TraceServiceGrpc;
 import io.opentelemetry.sdk.common.CompletableResultCode;
 import io.opentelemetry.sdk.common.export.ConfigBuilder;
 import io.opentelemetry.sdk.trace.data.SpanData;
@@ -89,7 +90,6 @@ public final class OtlpGrpcSpanExporter implements SpanExporter {
         exporter.export(exportTraceServiceRequest),
         new FutureCallback<ExportTraceServiceResponse>() {
           public void onSuccess(@Nullable ExportTraceServiceResponse response) {
-            logger.info("Succeeded to export " + spans.size() + " spans");
             result.succeed();
           }
 

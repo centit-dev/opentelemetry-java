@@ -23,6 +23,11 @@ import io.opentelemetry.correlationcontext.DefaultCorrelationContextManager;
 import io.opentelemetry.correlationcontext.spi.CorrelationContextManagerFactory;
 import io.opentelemetry.internal.Obfuscated;
 import io.opentelemetry.internal.Utils;
+import io.opentelemetry.logs.LogRecordBuilder;
+import io.opentelemetry.logs.LogRecordDataProvider;
+import io.opentelemetry.logs.Logger;
+import io.opentelemetry.logs.LoggerBuilder;
+import io.opentelemetry.logs.spi.LogRecordDataProviderFactory;
 import io.opentelemetry.metrics.DefaultMeterProvider;
 import io.opentelemetry.metrics.Meter;
 import io.opentelemetry.metrics.MeterProvider;
@@ -54,6 +59,7 @@ public final class OpenTelemetry {
 
   private final TracerProvider tracerProvider;
   private final MeterProvider meterProvider;
+  private final LogRecordDataProvider loggerProvider;
   private final CorrelationContextManager contextManager;
 
   private volatile ContextPropagators propagators =
@@ -144,6 +150,14 @@ public final class OpenTelemetry {
     return getMeterProvider().get(instrumentationName, instrumentationVersion);
   }
 
+  public static LogRecordDataProvider getLogRecordDataProvider() {
+    return getInstance().loggerProvider;
+  }
+
+  public static Logger getLogRecordBuilder(String instrumentationScopeName) {
+    return getLogRecordDataProvider().loggerBuilder(instrumentationScopeName).build();
+  }
+
   /**
    * Returns a singleton {@link CorrelationContextManager}.
    *
@@ -210,6 +224,14 @@ public final class OpenTelemetry {
         meterProviderFactory != null
             ? meterProviderFactory.create()
             : DefaultMeterProvider.getInstance();
+
+    LogRecordDataProviderFactory logRecordDataProvider =
+        loadSpi(LogRecordDataProviderFactory.class);
+    loggerProvider =
+        logRecordDataProvider != null
+            ? logRecordDataProvider.create()
+            : LogRecordDataProvider.LoggerProviderHelper.noop();
+
     CorrelationContextManagerFactory contextManagerProvider =
         loadSpi(CorrelationContextManagerFactory.class);
     contextManager =
