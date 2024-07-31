@@ -47,7 +47,7 @@ public final class SdkLogRecordDataProvider implements LogRecordDataProvider, Cl
   private final LoggerSharedState sharedState;
   private final ComponentRegistry<SdkLogger> loggerComponentRegistry;
   private final ScopeConfigurator<LoggerConfig> loggerConfigurator;
-  private final boolean isNoopLogRecordProcessor;
+  private boolean isNoopLogRecordProcessor;
 
   /**
    * Returns a new {@link SdkLoggerProviderBuilder} for {@link SdkLogRecordDataProvider}.
@@ -139,6 +139,7 @@ public final class SdkLogRecordDataProvider implements LogRecordDataProvider, Cl
   }
 
   public void addProcessor(LogRecordProcessor processor) {
+    isNoopLogRecordProcessor = false;
     sharedState.addLogRecordProcessor(processor);
   }
 
