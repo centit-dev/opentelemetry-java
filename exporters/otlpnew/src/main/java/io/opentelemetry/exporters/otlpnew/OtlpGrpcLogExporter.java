@@ -91,7 +91,6 @@ public final class OtlpGrpcLogExporter implements LogRecordExporter {
         exporter.export(exportLogsServiceRequest),
         new FutureCallback<ExportLogsServiceResponse>() {
           public void onSuccess(@Nullable ExportLogsServiceResponse response) {
-            logger.info("Succeeded to export " + logs.size() + " logs");
             result.succeed();
           }
 
