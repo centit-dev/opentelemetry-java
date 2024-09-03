@@ -1,3 +1,8 @@
+# 更新记录
+* fix(logger): 修复 flag
+* feat(exporter,otlp): otlp 导出日志
+* feat(exporter,otlp): otlp 导出现代 proto
+
 # OpenTelemetry
 [![Gitter chat][gitter-image]][gitter-url]
 [![Build Status][circleci-image]][circleci-url]
@@ -30,7 +35,7 @@ We would love to hear from the larger community: please provide feedback proacti
 Both API and SDK extensions consist of various additional components which are excluded from the core artifacts
 to keep them from growing too large.
 We still aim to provide the same level of quality and guarantee for them as for the core components.
-Please don't hesitate to use them if you find them useful. 
+Please don't hesitate to use them if you find them useful.
 
 ## Project setup and contribute
 
@@ -158,9 +163,9 @@ Maintainers ([@open-telemetry/java-maintainers](https://github.com/orgs/open-tel
 
 *Find more about the maintainer role in [community repository](https://github.com/open-telemetry/community/blob/master/community-membership.md#maintainer).*
 
-[circleci-image]: https://circleci.com/gh/open-telemetry/opentelemetry-java.svg?style=svg 
+[circleci-image]: https://circleci.com/gh/open-telemetry/opentelemetry-java.svg?style=svg
 [circleci-url]: https://circleci.com/gh/open-telemetry/opentelemetry-java
-[gitter-image]: https://badges.gitter.im/open-telemetry/opentelemetry-java.svg 
+[gitter-image]: https://badges.gitter.im/open-telemetry/opentelemetry-java.svg
 [gitter-url]: https://gitter.im/open-telemetry/opentelemetry-java?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [codecov-image]: https://codecov.io/gh/open-telemetry/opentelemetry-java/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/open-telemetry/opentelemetry-java/branch/master/
